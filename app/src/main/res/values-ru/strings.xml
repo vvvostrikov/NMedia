@@ -2,5 +2,5 @@
 <resources>
     <string name="app_name">НМедия</string>
     <string name="avatar_description">Аватар пользвателя</string>
-    <string name="Nmedia">НМедия!</string>
+    <string name="NMedia">НМедия!</string>
 </resources>
