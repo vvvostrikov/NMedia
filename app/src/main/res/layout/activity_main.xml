@@ -6,13 +6,124 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/post_avatar_size"
+        android:layout_height="@dimen/post_avatar_size"
+        android:contentDescription="@string/avatar_description"
+        app:layout_constraintBaseline_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@mipmap/ic_launcher_round"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/authorName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_spacing"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@id/date"
+        app:layout_constraintEnd_toStartOf="@id/option"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        android:text="Нетология. Университет интернет-профессий" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="@id/option"
+        app:layout_constraintStart_toStartOf="@id/authorName"
+        app:layout_constraintTop_toBottomOf="@id/authorName"
+        android:text="09.09.2022" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/option"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/NMedia"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="avatar,date, option"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@tools:sample/lorem/random"
+        app:layout_constraintTop_toBottomOf="@id/barrier"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        app:layout_constraintTop_toBottomOf="@id/textPost"
+        app:layout_constraintStart_toStartOf="@id/textPost"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/count_likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@id/likes"
+        app:layout_constraintTop_toBottomOf="@id/textPost"
+        android:text="10" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/count_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@id/share"
+        app:layout_constraintTop_toBottomOf="@id/textPost"
+        android:text="5" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_share_24"
+        app:layout_constraintStart_toEndOf="@id/likes"
+        app:layout_constraintTop_toBottomOf="@id/textPost"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/count_scan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textPost"
+        android:text="5"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textPost"
+        app:layout_constraintEnd_toStartOf="@id/count_scan"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_baseline_remove_red_eye_24"
+        android:background="@android:color/transparent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
