@@ -20,39 +20,35 @@ class MainActivity : AppCompatActivity() {
             author = "Vlad",
             content = "Events",
             published = "17.09.22",
-            likes = 0U
-
+            likes = 1100U,
+            countShare = 1100U
         )
         binding.render(post)
         binding.likes.setOnClickListener() {
             post.likedByMe = !post.likedByMe
             binding.likes.setImageResource(getLikeIconResId(post.likedByMe))
-            let {
                 if (post.likedByMe) {
-                    binding.countLikes.text = formatLikes(post.likes + 1u)
+                    binding.countLikes.text = formatCount(++post.likes)
                     R.drawable.ic_baseline_favorite_24
                 } else {
-                    binding.countLikes.text = formatLikes(post.likes - 1u + 1u)
+                    binding.countLikes.text = formatCount(--post.likes)
                     R.drawable.ic_baseline_favorite_border_24
                 }
-            }
 
-            var countShare = 0u
-
-            binding.share.setOnClickListener{
-                countShare += 1u
-                binding.countShare.text = formatLikes(countShare)
-            }
+        }
+        binding.share.setOnClickListener {
+            post.countShare += 1u
+            binding.countShare.text = formatCount(post.countShare)
         }
     }
 
 
-    private fun formatLikes(likes : UInt) : String {
-        return when (likes) {
-            in   0u .. 1099u -> likes.toString()
-            in 1100u .. 10_000u -> "${round((likes / 100u).toDouble()) / 10}K"
-            in 10_001u .. 999_999u-> "${round((likes / 1000u).toDouble()) / 10}K"
-            else -> "${round((likes / 100000u).toDouble()) / 10}M"
+    private fun formatCount(count : UInt) : String {
+        return when (count) {
+            in 0u .. 1099u -> count.toString()
+            in 1100u .. 10_000u -> "${round((count / 100u).toDouble() / 10)}K"
+            in 10_001u .. 999_999u -> "${round((count / 1000u).toDouble()) / 10}K"
+            else -> "${round((count / 100000u).toDouble()) / 10}M"
         }
     }
 
@@ -61,11 +57,11 @@ class MainActivity : AppCompatActivity() {
         authorName.text = post.author
         textPost.text = post.content
         date.text = post.published
-        countLikes.text = post.likes.toString()
+        countShare.text = formatCount(post.countShare)
+        countLikes.text = formatCount(post.likes)
     }
 
     @DrawableRes
     private fun getLikeIconResId(liked : Boolean) =
         if (liked) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
-
 }
