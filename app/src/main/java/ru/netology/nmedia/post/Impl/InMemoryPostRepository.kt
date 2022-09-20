@@ -1,9 +1,17 @@
 package ru.netology.nmedia.post.Impl
 
-import androidx.lifecycle.LiveData
+
+import android.provider.ContactsContract
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import ru.netology.nmedia.post.Post
 import ru.netology.nmedia.post.PostRepository
+
+import java.util.*
+
 
 class InMemoryPostRepository: PostRepository {
 
@@ -17,6 +25,21 @@ class InMemoryPostRepository: PostRepository {
                     countShare = 0U
         )
     )
+
+    init {
+        GlobalScope.launch(Dispatchers.Default) {
+            while (true){
+                delay(1000)
+                val currentPost = checkNotNull(data.value){
+                    "Data value should not be null"
+                }
+                val newPost = currentPost.copy(
+                        published = Date().toString()
+                )
+                data.postValue(newPost)
+            }
+        }
+    }
 
     override fun like() {
         val currentPost = checkNotNull(data.value){
