@@ -16,14 +16,14 @@ import java.util.*
 class InMemoryPostRepository: PostRepository {
 
     override val data = MutableLiveData(
-        Post(
+            Post(
                     id = 0L,
                     author = "Vlad",
                     content = "Events",
                     published = "17.09.22",
                     likes = 0U,
                     countShare = 0U
-        )
+            )
     )
 
     init {
