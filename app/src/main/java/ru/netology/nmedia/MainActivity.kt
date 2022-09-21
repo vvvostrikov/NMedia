@@ -5,43 +5,32 @@ import android.os.Bundle
 import androidx.annotation.DrawableRes
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.post.Post
+import ru.netology.nmedia.viewModel.PostViewModel
 import kotlin.math.*
+import androidx.activity.viewModels
+
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by  viewModels<PostViewModel>()
+
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        val post = Post(
-            id = 0L,
-            author = "Vlad",
-            content = "Events",
-            published = "17.09.22",
-            likes = 1100U,
-            countShare = 1100U
-        )
-        binding.render(post)
+        viewModel.data.observe(this){post ->
+                binding.render(post)
+                binding.likes.setImageResource(getLikeIconResId(post.likedByMe))
+        }
         binding.likes.setOnClickListener() {
-            post.likedByMe = !post.likedByMe
-            binding.likes.setImageResource(getLikeIconResId(post.likedByMe))
-                if (post.likedByMe) {
-                    binding.countLikes.text = formatCount(++post.likes)
-                    R.drawable.ic_baseline_favorite_24
-                } else {
-                    binding.countLikes.text = formatCount(--post.likes)
-                    R.drawable.ic_baseline_favorite_border_24
-                }
-
+            viewModel.onLikeClicked()
         }
         binding.share.setOnClickListener {
-            post.countShare += 1u
-            binding.countShare.text = formatCount(post.countShare)
+            viewModel.onShareClicked()
         }
     }
-
 
     private fun formatCount(count : UInt) : String {
         return when (count) {
