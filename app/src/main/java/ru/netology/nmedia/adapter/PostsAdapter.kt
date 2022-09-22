@@ -1,7 +1,8 @@
-package ru.netology.nmedia.post.Impl
+package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -12,14 +13,13 @@ import ru.netology.nmedia.post.Post
 import kotlin.math.round
 
 internal class PostsAdapter(
-    private val onLikeClicked: (Post) -> Unit,
-    private val onShareClicked: (Post) -> Unit,
+    private val interactionListener : PostInteractionListener
 ): ListAdapter<Post, PostsAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = PostBinding.inflate(inflater,parent,false)
-        return ViewHolder(binding)
+        return ViewHolder(binding, interactionListener)
     }
 
     override fun onBindViewHolder(holder : ViewHolder, position : Int) {
@@ -27,17 +27,37 @@ internal class PostsAdapter(
     }
 
     inner class ViewHolder(
-        private val binding: PostBinding
-    ): RecyclerView.ViewHolder(binding.root){
+        private val binding: PostBinding,
+        listener: PostInteractionListener
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        private lateinit var post : Post
+        private lateinit var post: Post
+
+        private val popupMenu by lazy {
+            PopupMenu(itemView.context, binding.option).apply {
+                inflate(R.menu.option_post)
+                setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.remove -> {
+                            listener.onRemoveClicked(post)
+                            true
+                        }
+                        R.id.edit -> {
+                            listener.onEditClicked(post)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+            }
+        }
 
         init {
             binding.likes.setOnClickListener {
-                onLikeClicked(post)
+                listener.onLikeClicked(post)
             }
             binding.share.setOnClickListener {
-                onShareClicked(post)
+                listener.onShareClicked(post)
             }
         }
 
@@ -49,6 +69,7 @@ internal class PostsAdapter(
                 date.text = post.published
                 countShare.text = formatCount(post.countShare)
                 countLikes.text = formatCount(post.likes)
+                option.setOnClickListener { popupMenu.show() }
                 likes.setImageResource(getLikeIconResId(post.likedByMe))
             }
         }
