@@ -15,8 +15,10 @@ class InMemoryPostRepository: PostRepository {
         "Data value should not be null"
     }
 
+    private var nextId = GENERATED_POSTS_AMOUNT.toLong()
+
     override val data = MutableLiveData(
-            List(1000) {index->
+            List(GENERATED_POSTS_AMOUNT) {index->
                 Post(
                         id = index + 1L,
                         author = "Netology",
@@ -28,23 +30,6 @@ class InMemoryPostRepository: PostRepository {
                 )
             }
     )
-
-    /*init {
-        GlobalScope.launch {
-            while (true){
-                delay(1000)
-                val currentPost = checkNotNull(data.value){
-                    "Data value should not be null"
-                }
-
-                val newPost = currentPost.copy(
-                       published = Date().toString()
-                )
-                data.postValue(newPost)
-            }
-        }
-    }*/
-
     override fun like(postId: Long) {
         data.value = posts.map {
             if (it.id == postId) it.copy(
@@ -58,5 +43,29 @@ class InMemoryPostRepository: PostRepository {
         data.value = posts.map {
             if (it.id == postId) it.copy(countShare = it.countShare + 1u) else it
         }
+    }
+
+    override fun delete(postId : Long) {
+        data.value = posts.filterNot {it.id == postId}
+    }
+
+    override fun save(post : Post) {
+        if (post.id == PostRepository.NEW_POST_ID) insert(post) else update(post)
+    }
+
+    private fun update(post : Post) {
+        data.value = posts.map {
+            if (it.id == post.id) post else it
+        }
+    }
+
+    private fun insert(post : Post) {
+        data.value = listOf(
+                post.copy(id = ++nextId)
+        ) + posts
+    }
+
+    private companion object{
+        const val GENERATED_POSTS_AMOUNT = 1000
     }
 }

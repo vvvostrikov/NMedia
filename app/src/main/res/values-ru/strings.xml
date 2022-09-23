@@ -2,5 +2,9 @@
 <resources>
     <string name="app_name">НМедия</string>
     <string name="avatar_description">Аватар пользвателя</string>
-    <string name="NMedia">НМедия!</string>
+    <string name="NMedia">НМедия</string>
+    <string name="remove">Удалить</string>
+    <string name="post_text">Текст поста</string>
+    <string name="menu_edit">Изменить</string>
+
 </resources>
