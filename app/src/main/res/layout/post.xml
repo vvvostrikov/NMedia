@@ -4,103 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/common_spacing">
+    android:padding="4dp">
+
 
     <ImageView
         android:id="@+id/avatar"
-        android:layout_width="@dimen/post_avatar_size"
-        android:layout_height="@dimen/post_avatar_size"
-        android:contentDescription="@string/avatar_description"
-        android:src="@mipmap/ic_launcher_round"
-        app:layout_constraintBaseline_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="49dp"
+        android:layout_height="45dp"
+        android:contentDescription="@string/avatar_discription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_launcher" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/authorName"
+        android:id="@+id/author_Name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_spacing"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="Нетология. Университет интернет-профессий"
-        app:layout_constraintBottom_toTopOf="@id/date"
-        app:layout_constraintEnd_toStartOf="@id/option"
+        app:layout_constraintBottom_toTopOf="@id/author_Text"
+        app:layout_constraintEnd_toStartOf="@id/options"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        tools:text="Нетология. Университет интернет-профессий" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/date"
+        android:id="@+id/author_Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="09.09.2022"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
-        app:layout_constraintEnd_toEndOf="@id/option"
-        app:layout_constraintStart_toStartOf="@id/authorName"
-        app:layout_constraintTop_toBottomOf="@id/authorName" />
+        app:layout_constraintEnd_toEndOf="@id/author_Name"
+        app:layout_constraintStart_toStartOf="@id/author_Name"
+        app:layout_constraintTop_toBottomOf="@id/author_Name"
+        tools:text="05.07.2022" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/option"
-        android:layout_width="wrap_content"
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:icon="@drawable/ic_icon_option_24dp"
+            style="@style/Widget.AppTheme.IconOnly"
+            />
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_Post"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:icon="@drawable/ic_baseline_more_vert_24"
-        style="@style/Widget.AppTheme.IconOnly" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/video"
+        tools:text="Мы и наши партнеры сохраняем и / или используем информацию на устройстве, например уникальные идентификаторы в файлах cookie, в целях обработки личной информации. Чтобы подтвердить или изменить свой выбор, нажмите ниже. Помимо прочего, здесь вы можете воспользоваться своим правом на возражение против законных интересов, если обработка осуществляется на их основании. Сделать это также можно в любое время на странице политики конфиденциальности. Ваши настройки будут переданы нашим партнерам и не будут влиять на данные просмотра."
+        app:layout_constrainedHeight="false"/>
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar,date, option" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/likes"
-        style="@style/Widget.AppTheme.LikeCheckBox"
+        style="@style/Widget.AppTheme.LikeCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:checkable="true"
-        android:contentDescription="@string/avatar_description"
-        app:icon="@drawable/ic_like_24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textPost"
-        tools:text="100500" />
+        app:layout_constraintTop_toBottomOf="@id/barrier"
+        android:checkable="true"
+        app:icon="@drawable/is_like_24dp"
+        tools:text="999" />
 
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@tools:sample/lorem/random"
-        app:layout_constraintTop_toBottomOf="@id/barrier" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/share"
         style="@style/Widget.AppTheme.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:minWidth="@dimen/icon_button_min_size"
-        android:minHeight="@dimen/icon_button_min_size"
         app:icon="@drawable/ic_baseline_share_24"
         app:layout_constraintStart_toEndOf="@id/likes"
-        app:layout_constraintTop_toBottomOf="@id/textPost"
-        tools:text="100500"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/barrier"
+        tools:text="999" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/count_scan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textPost" />
+        app:layout_constraintTop_toBottomOf="@id/barrier"
+        android:text=""/>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/scan"
@@ -109,8 +109,45 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_baseline_remove_red_eye_24"
+        android:backgroundTint="@color/white"
+        android:minWidth="24dp"
+        android:minHeight="24dp"
+        android:src="@drawable/ic_baseline_visibility_24"
         app:layout_constraintEnd_toStartOf="@id/count_scan"
-        app:layout_constraintTop_toBottomOf="@id/textPost" />
+        app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="text_Post" />
+
+    <FrameLayout
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:foregroundGravity="top"
+        app:layout_constraintTop_toBottomOf="@id/author_Text"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_Post"
+        android:background="@drawable/preview"
+        />
+
+    <ImageButton
+        android:id="@+id/playIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/video"
+        app:layout_constraintEnd_toEndOf="@id/video"
+        app:layout_constraintTop_toTopOf="@id/video"
+        app:layout_constraintBottom_toBottomOf="@id/video"
+        android:src="@drawable/ic_play_24"
+        android:background="@android:color/transparent"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

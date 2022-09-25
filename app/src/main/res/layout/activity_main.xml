@@ -14,61 +14,29 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/barrier2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-8dp"
+        tools:layout_editor_absoluteX="54dp"
         tools:listitem="@layout/post" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="saveButton, addTextContent, cancelButton" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/addPost"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:contentDescription="@string/add_post"
+    android:src="@drawable/ic_baseline_add_circle_24"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:maxImageSize="58dp"
+    />
 
 
-    <EditText
-        android:id="@+id/addTextContent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:hint="@string/post_text"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/barrier2"
-        app:layout_constraintEnd_toStartOf="@id/saveButton"
-        android:layout_marginTop="8dp" />
 
-    <ImageButton
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/addTextContent"
-        android:src="@drawable/ic_baseline_add_24"
-        android:background="@android:color/transparent"
-        />
 
-    <ImageButton
-        android:id="@+id/cancelButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/saveButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="4dp"
-        android:src="@drawable/ic_baseline_cancel_24"
-        android:background="@android:color/transparent"
-        />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="saveButton, cancelButton"
-        />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

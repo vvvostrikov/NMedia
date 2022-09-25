@@ -1,55 +1,91 @@
 package ru.netology.nmedia
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.View
-import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.viewModel.PostViewModel
 import androidx.activity.viewModels
-import androidx.core.widget.doAfterTextChanged
-import ru.netology.nmedia.adapter.PostsAdapter
-
+import androidx.appcompat.app.AppCompatActivity
+import ru.netology.nmedia.activity.PostContentActivity
+import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.impl.PostsAdapter
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by  viewModels<PostViewModel>()
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    private val viewModel by viewModels<PostViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val adapter = PostsAdapter(viewModel)
         binding.postsRecycleView.adapter = adapter
-        binding.group.visibility = View.GONE
+//        binding.group.visibility = View.GONE
 
         viewModel.data.observe(this) { post ->
             adapter.submitList(post)
         }
 
-        binding.cancelButton.setOnClickListener {
+ /*       binding.cancelButton.setOnClickListener {
             binding.group.visibility = View.GONE
             binding.addTextContent.clearFocus()
             binding.addTextContent.hideKeyboard()
             binding.addTextContent.setText("")
             viewModel.currentPost.value = null
         }
-
         binding.addTextContent.doAfterTextChanged {
             if (binding.addTextContent.text.isNotBlank())
                 binding.group.visibility = View.VISIBLE
+        }*/
+
+        binding.addPost.setOnClickListener {
+            viewModel.onAddClicked()
         }
 
-        binding.saveButton.setOnClickListener {
-            val content = binding.addTextContent.text.toString()
-            viewModel.onSaveButtonClicked(content)
-            binding.addTextContent.clearFocus()
-            binding.addTextContent.hideKeyboard()
-            binding.group.visibility = View.GONE
+        viewModel.playVideo.observe(this) { videoUrl ->
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
+            val videoPlayIntent = Intent.createChooser(intent, getString(R.string.chooser_playVideo_post))
+            if (videoPlayIntent.resolveActivity(packageManager) != null)
+                startActivity(videoPlayIntent)
         }
 
-        viewModel.currentPost.observe(this) { currentPost ->
-            binding.addTextContent.setText(currentPost?.content)
+        viewModel.sharePostEvent.observe(this) { postContent ->
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, postContent)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(
+                intent, getString(R.string.chooser_share_post)
+            )
+            startActivity(shareIntent)
+        }
+
+        val postContentActivityResultContract = PostContentActivity.ResultContract
+        val postContentActivityLauncher = registerForActivityResult(postContentActivityResultContract){postContent->
+            if(postContent==null){
+                viewModel.currentPost.value?.content
+                return@registerForActivityResult
+            }
+            viewModel.onSaveButtonClicked(postContent)
+        }
+        viewModel.navigateToPostContentScreenEvent.observe(this) {
+            postContentActivityLauncher.launch(it)
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
