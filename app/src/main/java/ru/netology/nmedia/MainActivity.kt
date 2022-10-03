@@ -20,6 +20,19 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        run {
+//            val preferences = getPreferences(Context.MODE_PRIVATE)
+//            preferences.edit {
+//                putString("key", "value")
+//            }
+//        }
+//
+//        run {
+//            val preferences = getPreferences(Context.MODE_PRIVATE)
+//            val value = preferences.getString("key", "no value") ?: return@run
+//            Snackbar.make(binding.root, value, Snackbar.LENGTH_INDEFINITE).show()
+//        }
+
         val adapter = PostsAdapter(viewModel)
         binding.postsRecycleView.adapter = adapter
 //        binding.group.visibility = View.GONE
@@ -28,17 +41,18 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(post)
         }
 
- /*       binding.cancelButton.setOnClickListener {
-            binding.group.visibility = View.GONE
-            binding.addTextContent.clearFocus()
-            binding.addTextContent.hideKeyboard()
-            binding.addTextContent.setText("")
-            viewModel.currentPost.value = null
-        }
-        binding.addTextContent.doAfterTextChanged {
-            if (binding.addTextContent.text.isNotBlank())
-                binding.group.visibility = View.VISIBLE
-        }*/
+//        binding.cancelButton.setOnClickListener {
+//            binding.group.visibility = View.GONE
+//            binding.addTextContent.clearFocus()
+//            binding.addTextContent.hideKeyboard()
+//            binding.addTextContent.setText("")
+//            viewModel.currentPost.value = null
+//        }
+
+//        binding.addTextContent.doAfterTextChanged {
+//            if (binding.addTextContent.text.isNotBlank())
+//                binding.group.visibility = View.VISIBLE
+//        }
 
         binding.addPost.setOnClickListener {
             viewModel.onAddClicked()
