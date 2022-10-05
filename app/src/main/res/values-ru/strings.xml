@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">НМедиа</string>
+    <string name="nmedia">НМедиа!</string>
+    <string name="descr_avatar">Аватар Нетологии</string>
+    <string name="descr_menu">Кнопка меню</string>
+    <string name="favorit_button">Кнопка \"Нравится\"</string>
+    <string name="eye_icon_image">Иконка количества просмотров</string>
+    <string name="button_share">Кнопка \"Поделиться\"</string>
+    <string name="remove">Удалить</string>
+    <string name="post_text">Введите текст</string>
+    <string name="menu_edit">Изменить</string>
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="description_post_save">Сохранить</string>
+    <string name="add_post">Новый пост</string>
+    <string name="chooser_player">Выбор приложения для проигрывания</string>
+</resources>

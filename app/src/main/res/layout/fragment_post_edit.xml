@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PostEditFragment"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp"
-    tools:context=".PostEditFragment">
+    android:layout_height="wrap_content">
+
 
     <ImageView
         android:id="@+id/top_avatar"
@@ -70,7 +70,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/video"
 
-        tools:text="Мы и наши партнеры сохраняем и / или используем информацию на устройстве, например уникальные идентификаторы в файлах cookie, в целях обработки личной информации. Чтобы подтвердить или изменить свой выбор, нажмите ниже. Помимо прочего, здесь вы можете воспользоваться своим правом на возражение против законных интересов, если обработка осуществляется на их основании. Сделать это также можно в любое время на странице политики конфиденциальности. Ваши настройки будут переданы нашим партнерам и не будут влиять на данные просмотра." />
+        tools:text="@tools:sample/lorem" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/headerBarrier"
@@ -144,6 +144,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@mipmap/play_small"
+        android:contentDescription="Editing post"
         app:layout_constraintEnd_toEndOf="@id/video"
         app:layout_constraintStart_toStartOf="@id/video"
         app:layout_constraintTop_toTopOf="@id/video"
