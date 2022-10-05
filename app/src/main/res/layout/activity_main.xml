@@ -4,39 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    tools:listitem="@layout/post">
-
+    tools:context=".FeedFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/postsRecycleView"
+
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/post"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="54dp"
-        tools:listitem="@layout/post" />
-
+        />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/addPost"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:contentDescription="@string/add_post"
-    android:src="@drawable/ic_baseline_add_circle_24"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:maxImageSize="58dp"
-    />
-
-
-
-
-
-
-
-
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="@string/add_post"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

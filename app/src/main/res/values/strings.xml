@@ -1,12 +1,18 @@
 <resources>
-    <string name="app_name">NMedia</string>
-    <string name="name">NMedia!</string>
-    <string name="avatar_discription">Author avatar</string>
+    <string name="app_name">nMedia</string>
+    <string name="nmedia">NMedia!</string>
+    <string name="descr_avatar">Netology avatar</string>
+    <string name="descr_menu">Menu</string>
+    <string name="favorit_button">Like</string>
+    <string name="eye_icon_image">Eye icon image</string>
+    <string name="button_share">share</string>
     <string name="remove">Remove</string>
-    <string name="post_text">Post Text</string>
+    <string name="post_text">Post text</string>
     <string name="menu_edit">Edit</string>
-    <string name="chooser_share_post">ShareShare</string>
-    <string name="post_save">Save</string>
-    <string name="add_post">Add</string>
-    <string name="chooser_playVideo_post">Play</string> />
+    <string name="chooser_share_post">Share post</string>
+    <string name="description_post_save">Save</string>
+    <string name="add_post">Add post</string>
+    <string name="chooser_player">Choose video player</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 </resources>
